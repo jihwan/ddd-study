@@ -12,8 +12,7 @@
 	
 	
     <modules>
-        <module>ddd-collection</module>
-        <module>ddd-orm</module>
+        <module>ddd-example</module>
     </modules>
 	
 	<dependencies>
