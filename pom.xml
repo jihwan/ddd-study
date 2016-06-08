@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>zhwan.info</groupId>
 	<artifactId>ddd</artifactId>
-	<version>1.5.0</version>
+	<version>2.0.0</version>
 	<packaging>pom</packaging>
 	
 	<properties>
@@ -12,8 +12,7 @@
 	
 	
     <modules>
-        <module>ddd-collection</module>
-        <module>ddd-orm</module>
+        <module>ddd-example</module>
     </modules>
 	
 	<dependencies>
