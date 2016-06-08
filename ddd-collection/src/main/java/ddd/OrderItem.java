@@ -1,15 +1,24 @@
 package ddd;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Configurable;
+
+@Configurable(preConstruction=true)
 public class OrderItem {
 
 	Product product;
 	int quantity;
 	
-	private ProductRepository productRepository = new ProductRepository();
+	@Autowired
+	private ProductRepository productRepository;
 	
 	public OrderItem(String productName, int quantity) {
 		this.product = productRepository.find(productName);
 		this.quantity = quantity;
+	}
+	
+	public void setProductRepository(ProductRepository productRepository) {
+		this.productRepository = productRepository;
 	}
 	
 	public Money getPrice() {

@@ -4,7 +4,35 @@
 	<parent>
 		<groupId>zhwan.info</groupId>
 		<artifactId>ddd</artifactId>
-		<version>1.0.0</version>
+		<version>1.5.0</version>
 	</parent>
 	<artifactId>ddd-collection</artifactId>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aspects</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-instrument</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+	</dependencies>
+	
+	
+<!-- 	-javaagent:C:\Users\Administrator\.m2\repository\org\springframework\spring-instrument\4.2.6.RELEASE\spring-instrument-4.2.6.RELEASE.jar -->
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+<!-- 				<version>2.4.2</version> -->
+				<configuration>
+					<argLine>-javaagent:C:\Users\Administrator\.m2\repository\org\springframework\spring-instrument\4.2.6.RELEASE\spring-instrument-4.2.6.RELEASE.jar</argLine>
+				</configuration>				
+			</plugin>
+		</plugins>
+	</build>
 </project>

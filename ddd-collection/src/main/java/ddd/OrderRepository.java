@@ -4,13 +4,20 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
 import common.Registrar;
 
+@Repository
 public class OrderRepository {
 
+	@Autowired
+	private Registrar registrar;
+	
 	public void save(Order order) {
 
-		Registrar.add(order.getClass(), order);
+		registrar.add(order.getClass(), order);
 	}
 
 	public Set<Order> findByCustomer(Customer customer) {
@@ -29,16 +36,16 @@ public class OrderRepository {
 	@SuppressWarnings("unchecked")
 	public Set<Order> findAll() {
 		return new HashSet<>(
-				((Collection<Order>) Registrar.getAll(Order.class))
+				((Collection<Order>) registrar.getAll(Order.class))
 				);
 	}
 
 	public Order find(String orderId) {
-		return (Order) Registrar.get(Order.class, orderId);
+		return (Order) registrar.get(Order.class, orderId);
 	}
 
 	public void delete(String orderId) {
-		Registrar.delete(Order.class, orderId);
+		registrar.delete(Order.class, orderId);
 	}
 
 

@@ -1,23 +1,33 @@
 package ddd;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertSame;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import common.Registrar;
+import config.AppConfig;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(classes={AppConfig.class})
 public class OrderTest {
 	
-	Customer customer;
+	@Autowired
 	OrderRepository orderRepository;
+	
+	@Autowired
 	ProductRepository productRepository;
+	
+	Customer customer;
 	
 	@Before
 	public void setup() {
-		Registrar.init();
-		orderRepository = new OrderRepository();
-		productRepository = new ProductRepository();
 		
 		productRepository.save(new Product("prod1", 1000));
 		productRepository.save(new Product("prod2", 5000));
