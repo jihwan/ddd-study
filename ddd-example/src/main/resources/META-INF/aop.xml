@@ -2,12 +2,11 @@
 "-//AspectJ//DTD//EN" "http://www.eclipse.org/aspectj/dtd/aspectj.dtd">
 <aspectj>
 <!-- 	<weaver -->
-<!-- 		options="-Xset:weaveJavaxPackages=false -Xreweavable -showWeaveInfo  -XmessageHandlerClass:org.springframework.aop.aspectj.AspectJWeaverMessageHandler"> -->
-	<weaver options="-XnoInline  -verbose -debug -showWeaveInfo -XmessageHandlerClass:org.springframework.aop.aspectj.AspectJWeaverMessageHandler">
+<!-- 		options="-XnoInline -Xset:weaveJavaxPackages=false -Xreweavable -showWeaveInfo  -XmessageHandlerClass:org.springframework.aop.aspectj.AspectJWeaverMessageHandler"> -->
+	<weaver options=" -Xreweavable -verbose -debug -showWeaveInfo -XmessageHandlerClass:org.springframework.aop.aspectj.AspectJWeaverMessageHandler">
 		<exclude within="ddd..*CGLIB*" />
 		<exclude within="ddd..*javassist*" />
-		<include within="ddd.OrderItem" />
-<!-- 		<include within="ddd..*" /> -->
+		<include within="ddd..*" />
 	</weaver>
 	<aspects>
 		<aspect
