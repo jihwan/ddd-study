@@ -42,10 +42,10 @@
 					<artifactId>commons-logging</artifactId>
 					<groupId>commons-logging</groupId>
 				</exclusion>
-				<exclusion>
-					<artifactId>org.springframework</artifactId>
-					<groupId>spring-aop</groupId>
-				</exclusion>
+<!-- 				<exclusion> -->
+<!-- 					<artifactId>org.springframework</artifactId> -->
+<!-- 					<groupId>spring-aop</groupId> -->
+<!-- 				</exclusion> -->
 			</exclusions>
 		</dependency>		
 		<dependency>
