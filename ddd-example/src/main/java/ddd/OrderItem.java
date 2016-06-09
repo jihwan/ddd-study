@@ -27,7 +27,7 @@ public class OrderItem {
 	@Transient
 	private ProductRepository productRepository;
 	
-	OrderItem() {}
+	public OrderItem() {}
 	
 	public OrderItem(Product product, int quantity) {
 		this.product = product;

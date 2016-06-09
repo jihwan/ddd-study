@@ -25,7 +25,7 @@ import impl.OrderRepositoryImpl;
 @Configuration
 @EnableLoadTimeWeaving
 @EnableSpringConfigured
-@EnableTransactionManagement(mode=AdviceMode.ASPECTJ)
+@EnableTransactionManagement//(mode=AdviceMode.ASPECTJ)
 @ComponentScan(basePackageClasses={
 		Order.class,
 		OrderRepositoryImpl.class
