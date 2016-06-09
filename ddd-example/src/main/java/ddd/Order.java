@@ -3,16 +3,46 @@ package ddd;
 import java.util.HashSet;
 import java.util.Set;
 
-import common.EntryPoint;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
-public class Order extends EntryPoint {
+@Entity
+public class Order {
 	
-	private Set<OrderItem> items = new HashSet<>();
+	@Id
+	@GeneratedValue
+	private Long id;
+	
+	@Column(name="order_name")
+	private String orderName;
+	
+	@ManyToOne(optional=true)
+//	@JoinColumn(name="customer_id", )
 	private Customer customer;
+	
+	@OneToMany(cascade={CascadeType.ALL}, orphanRemoval=true)
+	@JoinColumn(name="order_name", referencedColumnName="order_name", nullable=false)
+	private Set<OrderItem> items = new HashSet<>();
 
-	Order(String identity, Customer customer) {
-		super(identity);
+	Order() {}
+	
+	Order(String orderName, Customer customer) {
+		this.orderName = orderName;
 		this.customer = customer;
+	}
+	
+	public Long getId() {
+		return id;
+	}
+	
+	public String getOrderName() {
+		return orderName;
 	}
 
 	public static Order order(String orderId, Customer customer) {
@@ -64,4 +94,28 @@ public class Order extends EntryPoint {
 		return this.customer == another;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((getOrderName() == null) ? 0 : getOrderName().hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Order other = (Order) obj;
+		if (getOrderName() == null) {
+			if (other.getOrderName() != null)
+				return false;
+		} else if (!getOrderName().equals(other.getOrderName()))
+			return false;
+		return true;
+	}
 }

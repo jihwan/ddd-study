@@ -1,28 +1,32 @@
 package ddd;
 
+import javax.persistence.Embeddable;
 
+@Embeddable
 public class Money {
 
-	private long price;
+	private long amount;
 	
-	public static Money ZERO = new Money(0);
+	public transient static Money ZERO = new Money(0);
 	
-	public Money(long price) {
-		this.price = price;
+	Money(){}
+	
+	public Money(long amount) {
+		this.amount = amount;
 	}
 	
-	public long getPrice() {
-		return price;
+	public long getAmount() {
+		return amount;
 	}
 
 	public Money add(Money money) {
 		
-		return new Money(getPrice() + money.getPrice());
+		return new Money(getAmount() + money.getAmount());
 	}
 
 	public boolean isGreaterThan(Money limitPrice) {
 		
-		if (this.getPrice() > limitPrice.getPrice()) {
+		if (this.getAmount() > limitPrice.getAmount()) {
 			return true;
 		}
 		else {
@@ -31,14 +35,14 @@ public class Money {
 	}
 
 	public Money multiply(int quantity) {
-		return new Money(price * quantity);
+		return new Money(getAmount() * quantity);
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (int) (price ^ (price >>> 32));
+		result = prime * result + (int) (getAmount() ^ (getAmount() >>> 32));
 		return result;
 	}
 
@@ -51,7 +55,7 @@ public class Money {
 		if (getClass() != obj.getClass())
 			return false;
 		Money other = (Money) obj;
-		if (price != other.price)
+		if (getAmount() != other.getAmount())
 			return false;
 		return true;
 	}
