@@ -16,7 +16,6 @@ public class Customer {
 	
 	private String customerNumber;
 	
-	@SuppressWarnings("unused")
 	private String name;
 	
 	@SuppressWarnings("unused")

@@ -104,7 +104,6 @@ public class OrderRepositoryTest {
 	
 	
 	// OrderItem LTW do not work!!!
-	
 	@Test
 	public void testOrderCount() {
 		orderRepository.save(customer.newOrder("CUST-01-ORDER-01")
