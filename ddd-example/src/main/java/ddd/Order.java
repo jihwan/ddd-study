@@ -23,11 +23,11 @@ public class Order {
 	private String orderName;
 	
 	@ManyToOne(optional=true)
-//	@JoinColumn(name="customer_id", )
+	@JoinColumn(name="customer_id")
 	private Customer customer;
 	
 	@OneToMany(cascade={CascadeType.ALL}, orphanRemoval=true)
-	@JoinColumn(name="order_name")//, referencedColumnName="order_name", nullable=false)
+	@JoinColumn(name="order_name")
 	private Set<OrderItem> orderItems = new HashSet<>();
 
 	Order() {}
@@ -47,6 +47,11 @@ public class Order {
 
 	public static Order order(String orderId, Customer customer) {
 		return new Order(orderId, customer);
+	}
+	
+	public Order with(Product product, int quantity) throws OrderLimitExceededException {
+		
+		return with(new OrderItem(product, quantity));
 	}
 	
 	public Order with(String productName, int quantity) throws OrderLimitExceededException {

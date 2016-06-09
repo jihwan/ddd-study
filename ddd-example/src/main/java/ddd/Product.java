@@ -20,6 +20,8 @@ public class Product {
 	@AttributeOverride(name="amount", column=@Column(name="price"))
 	private Money price;
 	
+	Product() {}
+	
 	public Product(String name, long price) {
 		this.name = name;
 		this.price = new Money(price);

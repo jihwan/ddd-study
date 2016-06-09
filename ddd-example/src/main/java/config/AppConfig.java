@@ -7,7 +7,6 @@ import java.util.Properties;
 import javax.sql.DataSource;
 
 import org.hibernate.cfg.AvailableSettings;
-import org.springframework.context.annotation.AdviceMode;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -29,26 +28,9 @@ import impl.OrderRepositoryImpl;
 })
 @EnableLoadTimeWeaving
 @EnableSpringConfigured
-//@EnableTransactionManagement//(mode=AdviceMode.ASPECTJ)
+@EnableTransactionManagement
 public class AppConfig {
 	
-	
-	@Bean
-	String[] packages() {
-		EntityAwareResolver entityAwareResolver = 
-				new EntityAwareResolver() {
-					@Override
-					public List<String> entityPackages() {
-						List<String> packages = new ArrayList<>();
-						packages.add("ddd");
-						return packages;
-					}
-				};
-				
-		return entityAwareResolver.entityPackages()
-				.toArray(new String[entityAwareResolver.entityPackages().size()]);
-	}
-
 	@Bean
     DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
@@ -69,20 +51,35 @@ public class AppConfig {
 		
         LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
         factoryBean.setDataSource(dataSource());
-        factoryBean.setPackagesToScan(packages());
+        factoryBean.setPackagesToScan(findPackages());
         factoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
+        factoryBean.setJpaProperties(jpaProperties());
+        return factoryBean;
+    }
+	
+	String[] findPackages() {
+		EntityAwareResolver entityAwareResolver = 
+				new EntityAwareResolver() {
+					@Override
+					public List<String> entityPackages() {
+						List<String> packages = new ArrayList<>();
+						packages.add("ddd");
+						return packages;
+					}
+				};
+				
+		return entityAwareResolver.entityPackages()
+				.toArray(new String[entityAwareResolver.entityPackages().size()]);
+	}
 
-        Properties jpaProperties = new Properties();
+	Properties jpaProperties() {
+		Properties jpaProperties = new Properties();
         jpaProperties.put(AvailableSettings.SHOW_SQL, true);
         jpaProperties.put(AvailableSettings.FORMAT_SQL, true);
         jpaProperties.put(AvailableSettings.USE_SQL_COMMENTS, true);
         jpaProperties.put(AvailableSettings.HBM2DDL_AUTO, "create");
-//        jpaProperties.put(AvailableSettings.HBM2DDL_AUTO, "create-drop");
         jpaProperties.put(AvailableSettings.DIALECT, "org.hibernate.dialect.H2Dialect");
         jpaProperties.put(AvailableSettings.USE_NEW_ID_GENERATOR_MAPPINGS, "true");
-//        jpaProperties.setProperty(AvailableSettings.HBM2DDL_IMPORT_FILES_SQL_EXTRACTOR, "org.hibernate.tool.hbm2ddl.MultipleLinesSqlCommandExtractor");
-        
-        factoryBean.setJpaProperties(jpaProperties);
-        return factoryBean;
-    }
+		return jpaProperties;
+	}
 }

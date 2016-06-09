@@ -24,9 +24,8 @@ public class OrderRepositoryImpl implements OrderRepository {
 	}
 
 	@Override
-	public void save(Order with) {
-		// TODO Auto-generated method stub
-
+	public void save(Order order) {
+		em.persist(order);
 	}
 
 }
