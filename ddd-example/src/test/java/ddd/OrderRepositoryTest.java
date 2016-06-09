@@ -106,6 +106,14 @@ public class OrderRepositoryTest {
 	// OrderItem LTW do not work!!!
 	@Test
 	public void testOrderCount() {
+		
+		for (String beanDefName : context.getBeanDefinitionNames()) {
+			System.err.println(beanDefName);
+		}
+		
+		Object bean = context.getBean("loadTimeWeaver");
+		System.err.println(bean);
+		
 		orderRepository.save(customer.newOrder("CUST-01-ORDER-01")
                 .with("prod1", 5)
                 .with("prod2", 20)

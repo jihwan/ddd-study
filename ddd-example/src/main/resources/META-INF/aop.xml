@@ -11,6 +11,5 @@
 	<aspects>
 		<aspect
 			name="org.springframework.beans.factory.aspectj.AnnotationBeanConfigurerAspect" />
-<!-- 			name="org.springframework.beans.factory.aspectj.AbstractDependencyInjectionAspect" /> -->
 	</aspects>
 </aspectj>

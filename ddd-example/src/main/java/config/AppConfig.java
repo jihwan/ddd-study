@@ -7,12 +7,15 @@ import java.util.Properties;
 import javax.sql.DataSource;
 
 import org.hibernate.cfg.AvailableSettings;
-import org.springframework.context.annotation.AdviceMode;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableLoadTimeWeaving;
+import org.springframework.context.annotation.LoadTimeWeavingConfigurer;
 import org.springframework.context.annotation.aspectj.EnableSpringConfigured;
+import org.springframework.instrument.classloading.LoadTimeWeaver;
+import org.springframework.instrument.classloading.ReflectiveLoadTimeWeaver;
+import org.springframework.instrument.classloading.SimpleLoadTimeWeaver;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -23,14 +26,14 @@ import ddd.Order;
 import impl.OrderRepositoryImpl;
 
 @Configuration
-@EnableLoadTimeWeaving
-@EnableSpringConfigured
-@EnableTransactionManagement//(mode=AdviceMode.ASPECTJ)
 @ComponentScan(basePackageClasses={
 		Order.class,
 		OrderRepositoryImpl.class
 })
-public class AppConfig {
+@EnableLoadTimeWeaving
+@EnableSpringConfigured
+@EnableTransactionManagement
+public class AppConfig { // implements LoadTimeWeavingConfigurer {
 	
 	@Bean
     DataSource dataSource() {
@@ -55,6 +58,12 @@ public class AppConfig {
         factoryBean.setPackagesToScan(findPackages());
         factoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
         factoryBean.setJpaProperties(jpaProperties());
+        
+//        factoryBean.setLoadTimeWeaver(reflectiveLoadTimeWeaver());
+//        <property name="loadTimeWeaver">
+//        <bean class="org.springframework.instrument.classloading.ReflectiveLoadTimeWeaver"/>
+//    </property>
+        
         return factoryBean;
     }
 	
@@ -83,4 +92,9 @@ public class AppConfig {
         jpaProperties.put(AvailableSettings.USE_NEW_ID_GENERATOR_MAPPINGS, "true");
 		return jpaProperties;
 	}
+
+//	@Override
+//	public LoadTimeWeaver getLoadTimeWeaver() {
+//		return new SimpleLoadTimeWeaver();
+//	}
 }
