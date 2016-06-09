@@ -90,14 +90,20 @@
 	</dependencies>
 	
 	
-<!-- 	-javaagent:C:\Users\Administrator\.m2\repository\org\springframework\spring-instrument\4.2.6.RELEASE\spring-instrument-4.2.6.RELEASE.jar -->
+<!--
+
+-javaagent:C:\Users\Administrator\.m2\repository\org\springframework\spring-instrument\4.2.6.RELEASE\spring-instrument-4.2.6.RELEASE.jar
+
+-->
 	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<configuration>
-					<argLine>-javaagent:C:\Users\Administrator\.m2\repository\org\springframework\spring-instrument\4.2.6.RELEASE\spring-instrument-4.2.6.RELEASE.jar</argLine>
+					<argLine>
+-javaagent:"${settings.localRepository}/org/springframework/spring-instrument/${spring.version}/spring-instrument-${spring.version}.jar"
+					</argLine>				
 				</configuration>				
 			</plugin>
 		</plugins>

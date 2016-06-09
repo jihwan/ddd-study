@@ -7,6 +7,7 @@ import java.util.Properties;
 import javax.sql.DataSource;
 
 import org.hibernate.cfg.AvailableSettings;
+import org.springframework.context.annotation.AdviceMode;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -22,13 +23,13 @@ import ddd.Order;
 import impl.OrderRepositoryImpl;
 
 @Configuration
+@EnableLoadTimeWeaving
+@EnableSpringConfigured
+@EnableTransactionManagement(mode=AdviceMode.ASPECTJ)
 @ComponentScan(basePackageClasses={
 		Order.class,
 		OrderRepositoryImpl.class
 })
-@EnableLoadTimeWeaving
-@EnableSpringConfigured
-@EnableTransactionManagement
 public class AppConfig {
 	
 	@Bean

@@ -24,7 +24,7 @@ public class OrderItem {
 	
 	int quantity;
 	
-	@Transient @Autowired
+	@Transient
 	private ProductRepository productRepository;
 	
 	OrderItem() {}
@@ -37,6 +37,11 @@ public class OrderItem {
 	public OrderItem(String productName, int quantity) {
 		this.product = productRepository.findByName(productName);
 		this.quantity = quantity;
+	}
+	
+	@Autowired
+	public void setProductRepository(ProductRepository productRepository) {
+		this.productRepository = productRepository;
 	}
 
 	public Long getId() {
