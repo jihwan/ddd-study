@@ -2,13 +2,11 @@ package ddd;
 
 import java.util.Set;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
-
-@Repository
-public interface OrderRepository extends JpaRepository<Order, Long>{
+public interface OrderRepository {
 
 	Set<Order> findByCustomer(Customer customer);
+
+	void save(Order with);
 
 //	public Set<Order> findByCustomer(Customer customer) {
 //		

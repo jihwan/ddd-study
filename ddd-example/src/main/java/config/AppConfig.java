@@ -13,33 +13,25 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableLoadTimeWeaving;
 import org.springframework.context.annotation.aspectj.EnableSpringConfigured;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
-import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import ddd.Order;
-import ddd.OrderItem;
+import impl.OrderRepositoryImpl;
 
 @Configuration
-//@ComponentScan(basePackageClasses={
-//		OrderItem.class
-//})
+@ComponentScan(basePackageClasses={
+		Order.class,
+		OrderRepositoryImpl.class
+})
 @EnableLoadTimeWeaving
 @EnableSpringConfigured
-@EnableJpaRepositories(basePackageClasses={
-		Order.class
-})
-@EnableTransactionManagement(mode=AdviceMode.ASPECTJ)
+//@EnableTransactionManagement//(mode=AdviceMode.ASPECTJ)
 public class AppConfig {
 	
-	@Bean()
-	OrderItem orderItem() {
-		return new OrderItem();
-	}
 	
 	@Bean
 	String[] packages() {
@@ -68,7 +60,7 @@ public class AppConfig {
     }
 	
 	@Bean
-    PlatformTransactionManager transactionManager() {
+	JpaTransactionManager transactionManager() {
         return new JpaTransactionManager();
     }
 	

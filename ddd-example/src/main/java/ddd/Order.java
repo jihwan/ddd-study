@@ -11,9 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
-@Entity(name="ORDERS")// @Table(name="ORDERS")
+@Entity(name="ORDERS")
 public class Order {
 	
 	@Id
