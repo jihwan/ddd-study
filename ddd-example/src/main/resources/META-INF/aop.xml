@@ -6,7 +6,8 @@
 	<weaver options="-XnoInline  -verbose -debug -showWeaveInfo -XmessageHandlerClass:org.springframework.aop.aspectj.AspectJWeaverMessageHandler">
 		<exclude within="ddd..*CGLIB*" />
 		<exclude within="ddd..*javassist*" />
-		<include within="ddd..*" />
+		<include within="ddd.OrderItem" />
+<!-- 		<include within="ddd..*" /> -->
 	</weaver>
 	<aspects>
 		<aspect
