@@ -1,8 +1,6 @@
 <!DOCTYPE aspectj PUBLIC
 "-//AspectJ//DTD//EN" "http://www.eclipse.org/aspectj/dtd/aspectj.dtd">
 <aspectj>
-<!-- 	<weaver -->
-<!-- 		options="-XnoInline -Xset:weaveJavaxPackages=false -Xreweavable -showWeaveInfo  -XmessageHandlerClass:org.springframework.aop.aspectj.AspectJWeaverMessageHandler"> -->
 	<weaver options=" -Xreweavable -verbose -debug -showWeaveInfo -XmessageHandlerClass:org.springframework.aop.aspectj.AspectJWeaverMessageHandler">
 		<exclude within="ddd..*CGLIB*" />
 		<exclude within="ddd..*javassist*" />

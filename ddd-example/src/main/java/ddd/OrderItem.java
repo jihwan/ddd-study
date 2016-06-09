@@ -9,9 +9,8 @@ import javax.persistence.Transient;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
-import org.springframework.stereotype.Component;
 
-@Configurable(preConstruction=true) //@Component
+@Configurable(preConstruction=true)
 @Entity
 public class OrderItem {
 	
@@ -25,8 +24,8 @@ public class OrderItem {
 	
 	int quantity;
 	
-	@Autowired //@Transient
-	private transient ProductRepository productRepository;
+	@Autowired @Transient
+	private ProductRepository productRepository;
 	
 	public OrderItem() {}
 	
