@@ -11,8 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
-@Entity(name="ORDERS")
+@Entity @Table(name="ORDERS")
 public class Order {
 	
 	@Id
@@ -27,7 +28,7 @@ public class Order {
 	private Customer customer;
 	
 	@OneToMany(cascade={CascadeType.ALL}, orphanRemoval=true)
-	@JoinColumn(name="order_name")
+	@JoinColumn(name="order_id")
 	private Set<OrderItem> orderItems = new HashSet<>();
 
 	Order() {}

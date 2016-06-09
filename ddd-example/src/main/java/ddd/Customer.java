@@ -39,6 +39,10 @@ public class Customer {
 		this.limitPrice = new Money(limitPrice);
 	}
 	
+	public String getName() {
+		return name;
+	}
+	
 	public String getCustomerNumber() {
 		return customerNumber;
 	}
@@ -75,4 +79,5 @@ public class Customer {
 			return false;
 		return true;
 	}
+
 }

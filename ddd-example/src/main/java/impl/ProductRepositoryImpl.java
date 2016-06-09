@@ -16,8 +16,9 @@ public class ProductRepositoryImpl implements ProductRepository {
 	
 	@Override
 	public Product findByName(String name) {
-		// TODO Auto-generated method stub
-		return null;
+		return em.createQuery("select p from Product p where p.name = :name", Product.class)
+		.setParameter("name", name)
+		.getSingleResult();
 	}
 
 	@Override
