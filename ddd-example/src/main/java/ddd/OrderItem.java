@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.stereotype.Component;
 
-@Configurable(preConstruction=true) @Component
+@Configurable(preConstruction=true) //@Component
 @Entity
 public class OrderItem {
 	
@@ -25,8 +25,8 @@ public class OrderItem {
 	
 	int quantity;
 	
-	@Autowired @Transient
-	private ProductRepository productRepository;
+	@Autowired //@Transient
+	private transient ProductRepository productRepository;
 	
 	public OrderItem() {}
 	
