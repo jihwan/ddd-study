@@ -7,7 +7,9 @@ import java.util.Properties;
 import javax.sql.DataSource;
 
 import org.hibernate.cfg.AvailableSettings;
+import org.springframework.context.annotation.AdviceMode;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableLoadTimeWeaving;
 import org.springframework.context.annotation.aspectj.EnableSpringConfigured;
@@ -17,16 +19,27 @@ import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import ddd.Order;
+import ddd.OrderItem;
 
 @Configuration
+//@ComponentScan(basePackageClasses={
+//		OrderItem.class
+//})
 @EnableLoadTimeWeaving
 @EnableSpringConfigured
 @EnableJpaRepositories(basePackageClasses={
 		Order.class
 })
+@EnableTransactionManagement(mode=AdviceMode.ASPECTJ)
 public class AppConfig {
+	
+	@Bean()
+	OrderItem orderItem() {
+		return new OrderItem();
+	}
 	
 	@Bean
 	String[] packages() {

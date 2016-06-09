@@ -88,6 +88,7 @@
 	</dependencies>
 	
 	
+<!-- 	-javaagent:C:\Users\Administrator\.m2\repository\org\aspectj\aspectjweaver\1.8.9\aspectjweaver-1.8.9.jar -->
 <!-- 	-javaagent:C:\Users\Administrator\.m2\repository\org\springframework\spring-instrument\4.2.6.RELEASE\spring-instrument-4.2.6.RELEASE.jar -->
 	<build>
 		<plugins>
