@@ -11,8 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
-@Entity
+@Entity(name="ORDERS")// @Table(name="ORDERS")
 public class Order {
 	
 	@Id
@@ -27,8 +28,8 @@ public class Order {
 	private Customer customer;
 	
 	@OneToMany(cascade={CascadeType.ALL}, orphanRemoval=true)
-	@JoinColumn(name="order_name", referencedColumnName="order_name", nullable=false)
-	private Set<OrderItem> items = new HashSet<>();
+	@JoinColumn(name="order_name")//, referencedColumnName="order_name", nullable=false)
+	private Set<OrderItem> orderItems = new HashSet<>();
 
 	Order() {}
 	
@@ -60,14 +61,14 @@ public class Order {
 			throw new OrderLimitExceededException();
 		}
 		
-		for (OrderItem item : items) {
+		for (OrderItem item : orderItems) {
 			if (item.isProductEqual(orderItem)) {
 				item.merge(orderItem);
 				return this;
 			}
 		}
 		
-		this.items.add(orderItem);
+		this.orderItems.add(orderItem);
 		return this;
 	}
 
@@ -79,7 +80,7 @@ public class Order {
 		
 		Money result = Money.ZERO;
 		
-		for (OrderItem item : items) {
+		for (OrderItem item : orderItems) {
 			result = result.add(item.getPrice());
 		}
 		
@@ -87,7 +88,7 @@ public class Order {
 	}
 
 	public int getOrderItemSize() {
-		return items.size();
+		return orderItems.size();
 	}
 
 	public boolean isOrderedBy(Customer another) {

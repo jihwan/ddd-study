@@ -16,6 +16,7 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.transaction.PlatformTransactionManager;
 
 import ddd.Order;
 
@@ -54,7 +55,7 @@ public class AppConfig {
     }
 	
 	@Bean
-    JpaTransactionManager transactionManager() {
+    PlatformTransactionManager transactionManager() {
         return new JpaTransactionManager();
     }
 	
@@ -74,7 +75,8 @@ public class AppConfig {
 //        jpaProperties.put(AvailableSettings.HBM2DDL_AUTO, "create-drop");
         jpaProperties.put(AvailableSettings.DIALECT, "org.hibernate.dialect.H2Dialect");
         jpaProperties.put(AvailableSettings.USE_NEW_ID_GENERATOR_MAPPINGS, "true");
-
+//        jpaProperties.setProperty(AvailableSettings.HBM2DDL_IMPORT_FILES_SQL_EXTRACTOR, "org.hibernate.tool.hbm2ddl.MultipleLinesSqlCommandExtractor");
+        
         factoryBean.setJpaProperties(jpaProperties);
         return factoryBean;
     }
