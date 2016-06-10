@@ -23,11 +23,11 @@ import impl.OrderRepositoryImpl;
 
 @Configuration
 @ComponentScan(basePackageClasses={
-		Order.class,
-		OrderRepositoryImpl.class
+		OrderRepositoryImpl.class,
+		Order.class
 })
-@EnableLoadTimeWeaving
 @EnableSpringConfigured
+@EnableLoadTimeWeaving
 @EnableTransactionManagement
 public class AppConfig {
 	
@@ -79,7 +79,7 @@ public class AppConfig {
         jpaProperties.put(AvailableSettings.USE_SQL_COMMENTS, true);
         jpaProperties.put(AvailableSettings.HBM2DDL_AUTO, "create");
         jpaProperties.put(AvailableSettings.DIALECT, "org.hibernate.dialect.H2Dialect");
-        jpaProperties.put(AvailableSettings.USE_NEW_ID_GENERATOR_MAPPINGS, "true");
+        jpaProperties.put(AvailableSettings.USE_NEW_ID_GENERATOR_MAPPINGS, true);
 		return jpaProperties;
 	}
 }

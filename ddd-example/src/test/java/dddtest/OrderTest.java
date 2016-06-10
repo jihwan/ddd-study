@@ -1,4 +1,4 @@
-package ddd;
+package dddtest;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -14,6 +14,13 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import config.AppConfig;
+import ddd.Customer;
+import ddd.Money;
+import ddd.Order;
+import ddd.OrderLimitExceededException;
+import ddd.OrderRepository;
+import ddd.Product;
+import ddd.ProductRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes={AppConfig.class})

@@ -1,4 +1,4 @@
-package ddd;
+package dddtest;
 
 import static org.junit.Assert.*;
 
@@ -13,6 +13,12 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import config.AppConfig;
+import ddd.Customer;
+import ddd.CustomerRepository;
+import ddd.Order;
+import ddd.OrderRepository;
+import ddd.Product;
+import ddd.ProductRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes={AppConfig.class})
@@ -107,12 +113,12 @@ public class OrderRepositoryTest {
 	@Test
 	public void testOrderCount() {
 		
-		for (String beanDefName : context.getBeanDefinitionNames()) {
-			System.err.println(beanDefName);
-		}
-		
-		Object bean = context.getBean("loadTimeWeaver");
-		System.err.println(bean);
+//		for (String beanDefName : context.getBeanDefinitionNames()) {
+//			System.err.println(beanDefName);
+//		}
+//		
+//		Object bean = context.getBean("loadTimeWeaver");
+//		System.err.println(bean);
 		
 		orderRepository.save(customer.newOrder("CUST-01-ORDER-01")
                 .with("prod1", 5)

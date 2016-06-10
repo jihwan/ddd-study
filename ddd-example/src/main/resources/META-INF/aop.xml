@@ -1,10 +1,32 @@
 <!DOCTYPE aspectj PUBLIC
 "-//AspectJ//DTD//EN" "http://www.eclipse.org/aspectj/dtd/aspectj.dtd">
 <aspectj>
-	<weaver options=" -Xreweavable -verbose -debug -showWeaveInfo -XmessageHandlerClass:org.springframework.aop.aspectj.AspectJWeaverMessageHandler">
+<!-- 
+reference site :
+https://eclipse.org/aspectj/doc/released/devguide/ltw-configuration.html#configuring-load-time-weaving-with-aopxml-files 
+-->
+	<!--
+	-XnoInline
+	-Xreweavable
+	-verbose -debug
+	-->
+	<weaver options="
+			-XnoInline
+			-Xreweavable 
+			-XmessageHandlerClass:org.springframework.aop.aspectj.AspectJWeaverMessageHandler 
+			-showWeaveInfo
+			">
+		<!--
+			class dump file.
+			${project}/_ajdump/${package}/?.class 
+		 -->
+		<dump within="ddd.*" />
+		<dump within="ltw.*" />
+		
 		<exclude within="ddd..*CGLIB*" />
-		<exclude within="ddd..*javassist*" />
-		<include within="ddd..*" />
+<!-- 		<exclude within="ddd..*javassist*" /> -->
+		<include within="ddd.*" />
+		<include within="ltw.*" />
 	</weaver>
 	<aspects>
 		<aspect

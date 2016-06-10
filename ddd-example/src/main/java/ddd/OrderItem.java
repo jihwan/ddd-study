@@ -5,13 +5,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Transient;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
 
-@Configurable(preConstruction=true)
-@Entity
+@Entity @Configurable(preConstruction=true)
 public class OrderItem {
 	
 	@Id
@@ -24,8 +22,8 @@ public class OrderItem {
 	
 	int quantity;
 	
-	@Autowired @Transient
-	private ProductRepository productRepository;
+	@Autowired
+	transient ProductRepository productRepository;
 	
 	public OrderItem() {}
 	
@@ -40,10 +38,6 @@ public class OrderItem {
 	}
 	
 	
-	public void setProductRepository(ProductRepository productRepository) {
-		this.productRepository = productRepository;
-	}
-
 	public Long getId() {
 		return id;
 	}
