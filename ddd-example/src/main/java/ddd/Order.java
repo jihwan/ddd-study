@@ -6,6 +6,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -23,12 +24,12 @@ public class Order {
 	@Column(name="order_name")
 	private String orderName;
 	
-	@ManyToOne(optional=true)
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="customer_id")
 	private Customer customer;
 	
 	@OneToMany(cascade={CascadeType.ALL}, orphanRemoval=true)
-	@JoinColumn(name="order_id")
+	@JoinColumn(name="order_id")//, nullable=false)
 	private Set<OrderItem> orderItems = new HashSet<>();
 
 	Order() {}
@@ -46,7 +47,7 @@ public class Order {
 		return orderName;
 	}
 
-	public static Order order(String orderId, Customer customer) {
+	static Order order(String orderId, Customer customer) {
 		return new Order(orderId, customer);
 	}
 	

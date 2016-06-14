@@ -24,7 +24,7 @@ https://eclipse.org/aspectj/doc/released/devguide/ltw-configuration.html#configu
 		<dump within="ltw.*" />
 		
 		<exclude within="ddd..*CGLIB*" />
-<!-- 		<exclude within="ddd..*javassist*" /> -->
+		<exclude within="ddd..*jvst*" />
 		<include within="ddd.*" />
 		<include within="ltw.*" />
 	</weaver>

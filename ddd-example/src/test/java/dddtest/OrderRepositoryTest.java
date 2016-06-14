@@ -8,6 +8,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.GenericApplicationContext;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
@@ -55,6 +56,7 @@ public class OrderRepositoryTest {
 	}
 	
 	@Ignore
+	@Rollback(false)
 	@Test
 	public void testOrderCount2() {
 		orderRepository.save(customer.newOrder("CUST-01-ORDER-01")
