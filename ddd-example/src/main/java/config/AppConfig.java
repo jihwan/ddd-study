@@ -7,11 +7,13 @@ import java.util.Properties;
 import javax.sql.DataSource;
 
 import org.hibernate.cfg.AvailableSettings;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableLoadTimeWeaving;
 import org.springframework.context.annotation.aspectj.EnableSpringConfigured;
+import org.springframework.instrument.classloading.LoadTimeWeaver;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -46,6 +48,18 @@ public class AppConfig {
         return new JpaTransactionManager();
     }
 	
+	/**
+	 * {@link LoadTimeWeaver}를 injection 선언만 해도,
+	 * spring 4.2.6에서 잘 동작 한다.
+	 * 
+	 * 허허.. container를 모르니 도통 뭔지 감이 안잡히네
+	 * 
+	 * https://jira.spring.io/browse/SPR-10856
+	 * 
+	 */
+	@Autowired
+	LoadTimeWeaver loadTimeWeaver;
+	
 	@Bean
     LocalContainerEntityManagerFactoryBean entityManagerFactory() {
 		
@@ -54,6 +68,9 @@ public class AppConfig {
         factoryBean.setPackagesToScan(findPackages());
         factoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
         factoryBean.setJpaProperties(jpaProperties());
+        
+//        factoryBean.setLoadTimeWeaver(loadTimeWeaver);
+        
         return factoryBean;
     }
 	
