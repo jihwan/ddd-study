@@ -25,14 +25,14 @@ public class OrderItem {
 	@Autowired
 	transient ProductRepository productRepository;
 	
-	public OrderItem() {}
+	OrderItem() {}
 	
-	public OrderItem(Product product, int quantity) {
+	OrderItem(Product product, int quantity) {
 		this.product = product;
 		this.quantity = quantity;
 	}
 	
-	public OrderItem(String productName, int quantity) {
+	OrderItem(String productName, int quantity) {
 		this.product = productRepository.findByName(productName);
 		this.quantity = quantity;
 	}

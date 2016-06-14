@@ -2,10 +2,9 @@
 [조영호님 블로그 DDD](http://aeternum.egloos.com/category/Domain-Driven%20Design) 내용에 나오는 코드 block.
 
 ## master
-JPA 2.1(Hibernate4) + Spring 4.2.6 (+LTW) 
+JPA 2.1(Hibernate4) + Spring 4.2.6 (+LTW) (java config에 LoadTimeWeaver injection을 하면 동작 한다. 아니면, Spring 4.3.0으로 upgrade 하자)
 
-OrderItem에 @Configurable 를 달아 두었고,
-AppConfig에 관련 bean 설정을 등록 했지만, 기대하는 LTW 작업은 발생하지 않는다. 
+
 
 ## tags
 1. 1.0.0

@@ -47,7 +47,7 @@ public class Order {
 		return orderName;
 	}
 
-	static Order order(String orderId, Customer customer) {
+	public static Order order(String orderId, Customer customer) {
 		return new Order(orderId, customer);
 	}
 	

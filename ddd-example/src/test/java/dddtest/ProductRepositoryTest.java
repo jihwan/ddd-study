@@ -2,7 +2,6 @@ package dddtest;
 
 import static org.junit.Assert.assertSame;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,15 +22,6 @@ public class ProductRepositoryTest {
 	@Autowired
 	GenericApplicationContext context;
 
-	@Ignore
-	@Test
-	public void testContext() throws Exception {
-
-		for (String beanName : context.getBeanDefinitionNames()) {
-			System.err.println(beanName);
-		}
-	}
-	
 	@Autowired
 	ProductRepository productRepository;
 	
