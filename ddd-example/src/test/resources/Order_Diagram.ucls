@@ -3,7 +3,7 @@
   associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
   <class id="1" language="java" name="ddd.Customer" project="ddd-example" 
     file="/ddd-example/src/main/java/ddd/Customer.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="244" y="715"/>    
+    <position height="-1" width="-1" x="642" y="213"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -21,7 +21,7 @@
   </class>  
   <class id="3" language="java" name="ddd.OrderItem" project="ddd-example" 
     file="/ddd-example/src/main/java/ddd/OrderItem.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="607" y="213"/>    
+    <position height="-1" width="-1" x="252" y="640"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -30,7 +30,7 @@
   </class>  
   <class id="4" language="java" name="ddd.Product" project="ddd-example" 
     file="/ddd-example/src/main/java/ddd/Product.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="601" y="683"/>    
+    <position height="-1" width="-1" x="646" y="643"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
