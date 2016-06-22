@@ -35,7 +35,7 @@ public class OrderIdGenerator implements IdentifierGenerator {
 	@Override
 	public Serializable generate(SessionImplementor session, Object object) throws HibernateException {
 		
-		// caution : object가 Collection(idbag)인 경우는 테스트를 못하였으며, 이상 작동 할 여기가 있다!!!
+		// caution : object가 Collection(idbag)인 경우는 테스트를 못하였으며, 이상 작동 할 여지가 있다!!!
 		Table tableAnnotation = AnnotationUtils.findAnnotation(object.getClass(), Table.class);
 		String tableName = tableAnnotation.name();
 		
