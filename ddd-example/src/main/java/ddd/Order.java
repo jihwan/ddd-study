@@ -15,13 +15,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.GenericGenerator;
-
 @Entity @Table(name="ORDERS")
 public class Order {
 	
 	@Id
-	@GenericGenerator(name="orders_seq_id", strategy="ddd.support.OrderIdGenerator")
+	@org.hibernate.annotations.GenericGenerator(name="orders_seq_id", strategy="ddd.support.OrderIdGenerator")
 	@GeneratedValue(generator="orders_seq_id")
 	@Column(length=2, precision=20)
 	private BigDecimal id;
