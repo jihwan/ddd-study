@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.persistence.Entity;
 import javax.persistence.Table;
 
 import org.apache.commons.lang3.StringUtils;
@@ -32,6 +33,14 @@ public class OrderIdGenerator implements IdentifierGenerator {
 	
 	private SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
 	
+	/**
+	 * <pre>
+	 * 아래 구현은 공용 사용을 하기 위한 방법이다.
+	 * 따라서 아래와 같은 규약을 지켜야 한다!!!
+	 * 
+	 * sequence 명은 ${tableName}_SEQ 명으로 작성해야 한다.
+	 * {@link Entity} class는 {@link Table}에 table name을 반드시 명시해야 한다.
+	 */
 	@Override
 	public Serializable generate(SessionImplementor session, Object object) throws HibernateException {
 		
