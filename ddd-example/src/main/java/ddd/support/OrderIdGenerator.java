@@ -19,22 +19,19 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.annotation.AnnotationUtils;
 
+/**
+ * h2database sequence grammer
+ * 
+ * CREATE SEQUENCE IF NOT EXISTS ORDERS_SEQ START WITH 1 MAXVALUE 99999 CYCLE;
+ * SELECT ORDERS_SEQ.NEXTVAL;
+ *  
+ */
 public class OrderIdGenerator implements IdentifierGenerator {
 
 	private static Logger log = LoggerFactory.getLogger(OrderIdGenerator.class);
 	
-	
 	private SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
 	
-	/*
-	 * 
-	 * CREATE SEQUENCE IF NOT EXISTS ORDERS_SEQ START WITH 1 MAXVALUE 99999 CYCLE;
-	 * SELECT ORDERS_SEQ.NEXTVAL
-	 *  
-	 * 
-	 * (non-Javadoc)
-	 * @see org.hibernate.id.IdentifierGenerator#generate(org.hibernate.engine.spi.SessionImplementor, java.lang.Object)
-	 */
 	@Override
 	public Serializable generate(SessionImplementor session, Object object) throws HibernateException {
 		
