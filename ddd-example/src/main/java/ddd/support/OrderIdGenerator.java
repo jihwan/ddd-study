@@ -44,11 +44,10 @@ public class OrderIdGenerator implements IdentifierGenerator {
 	@Override
 	public Serializable generate(SessionImplementor session, Object object) throws HibernateException {
 		
-		// caution : object가 Collection(idbag)인 경우는 테스트를 못하였으며, 이상 작동 할 여지가 있다!!!
-		Table tableAnnotation = AnnotationUtils.findAnnotation(object.getClass(), Table.class);
-		String tableName = tableAnnotation.name();
+		String tableName = extractTableName(object);
 		
 		Connection connection = session.connection();
+		
 		try {
 			PreparedStatement ps = connection.prepareStatement("SELECT " + tableName + "_SEQ.NEXTVAL AS SEQNO");
 			ResultSet rs = ps.executeQuery();
@@ -63,6 +62,24 @@ public class OrderIdGenerator implements IdentifierGenerator {
 		}
 		
 		return null;
+	}
+
+	/**
+	 * <pre>
+	 * object 에서 {@link Table} annotation 정보를 추출하고, table 명을 리턴한다.
+	 * caution : object가 Collection(idbag)인 경우는 테스트를 못하였으며, 이상 작동 할 여지가 있다!!!
+	 * 
+	 * @param object
+	 * @return
+	 */
+	protected String extractTableName(Object object) throws IllegalArgumentException {
+		
+		try {
+			Table tableAnnotation = AnnotationUtils.findAnnotation(object.getClass(), Table.class);
+			return tableAnnotation.name();
+		} catch (Exception e) {
+			throw new IllegalArgumentException("Unable extract table name");
+		}
 	}
 
 }
