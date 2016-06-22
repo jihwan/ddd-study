@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
 
 @Entity @Configurable(preConstruction=true)
+@org.hibernate.envers.Audited
 public class OrderItem {
 	
 	@Id

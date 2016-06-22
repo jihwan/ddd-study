@@ -81,6 +81,7 @@ public class AppConfig {
 					public List<String> entityPackages() {
 						List<String> packages = new ArrayList<>();
 						packages.add("ddd");
+						packages.add("support");
 						return packages;
 					}
 				};
@@ -97,6 +98,12 @@ public class AppConfig {
         jpaProperties.put(AvailableSettings.HBM2DDL_AUTO, "create");
         jpaProperties.put(AvailableSettings.DIALECT, "org.hibernate.dialect.H2Dialect");
         jpaProperties.put(AvailableSettings.USE_NEW_ID_GENERATOR_MAPPINGS, true);
+        
+        // hibernate-enver : audit config
+        // http://kthotakura.blogspot.kr/2015/09/database-auditing-using-hibernate-envers.html
+//        jpaProperties.put(EnversSettings.AUDIT_STRATEGY, ValidityAuditStrategy.class.getName());
+//        jpaProperties.put(EnversSettings.AUDIT_STRATEGY_VALIDITY_STORE_REVEND_TIMESTAMP, true);
+        
 		return jpaProperties;
 	}
 }

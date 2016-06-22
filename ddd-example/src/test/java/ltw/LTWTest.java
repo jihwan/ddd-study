@@ -27,6 +27,10 @@ public class LTWTest {
 //		}
 		
 		new Domain();
+		
+		// 9223372036854775807
+		// 2016010100000011111
+		System.out.println(Long.MAX_VALUE);
 	}
 	
 	@Configuration

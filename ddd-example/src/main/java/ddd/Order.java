@@ -1,6 +1,5 @@
 package ddd;
 
-import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,14 +14,24 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+/**
+ * h2database sequence grammer
+ * 
+ * CREATE SEQUENCE IF NOT EXISTS ORDERS_SEQ START WITH 1 MAXVALUE 99999 CYCLE;
+ * SELECT ORDERS_SEQ.NEXTVAL;
+ *  
+ * @author Jihwan Hwang
+ * 
+ */
 @Entity @Table(name="ORDERS")
+@org.hibernate.envers.Audited
 public class Order {
 	
 	@Id
-	@org.hibernate.annotations.GenericGenerator(name="orders_seq_id", strategy="ddd.support.OrderIdGenerator")
+	@org.hibernate.annotations.GenericGenerator(name="orders_seq_id", strategy="support.TimeStampAndSequenceIdGenerator")
 	@GeneratedValue(generator="orders_seq_id")
-	@Column(length=2, precision=20)
-	private BigDecimal id;
+//	@Column(length=2, precision=20)
+	private Long id;
 	
 	@Column(name="order_name")
 	private String orderName;
@@ -42,7 +51,7 @@ public class Order {
 		this.customer = customer;
 	}
 	
-	public BigDecimal getId() {
+	public Long getId() {
 		return id;
 	}
 	

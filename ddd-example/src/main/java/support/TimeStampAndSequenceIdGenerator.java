@@ -1,4 +1,4 @@
-package ddd.support;
+package support;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -20,16 +20,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.annotation.AnnotationUtils;
 
-/**
- * h2database sequence grammer
- * 
- * CREATE SEQUENCE IF NOT EXISTS ORDERS_SEQ START WITH 1 MAXVALUE 99999 CYCLE;
- * SELECT ORDERS_SEQ.NEXTVAL;
- *  
- */
-public class OrderIdGenerator implements IdentifierGenerator {
+public class TimeStampAndSequenceIdGenerator implements IdentifierGenerator {
 
-	private static Logger log = LoggerFactory.getLogger(OrderIdGenerator.class);
+	private static Logger log = LoggerFactory.getLogger(TimeStampAndSequenceIdGenerator.class);
 	
 	private SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
 	
@@ -54,7 +47,7 @@ public class OrderIdGenerator implements IdentifierGenerator {
 			if (rs.next()) {
 				int id = rs.getInt("SEQNO");
 				String code = format.format(new Date()) + StringUtils.leftPad("" + id, 5, '0');
-				return new BigDecimal(code);
+				return new BigDecimal(code).longValue();
 			}
 		} catch (SQLException e) {
 			log.error("Unable to generate Sequence", e);
