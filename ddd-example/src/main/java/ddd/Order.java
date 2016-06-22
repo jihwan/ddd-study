@@ -38,11 +38,13 @@ public class Order {
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="customer_id")
+	@org.hibernate.envers.NotAudited
 	private Customer customer;
 	
 	@OneToMany(cascade={CascadeType.ALL}, orphanRemoval=true)
 	@JoinColumn(name="order_id")//, nullable=false)
-	private Set<OrderItem> orderItems = new HashSet<>();
+	@org.hibernate.envers.AuditMappedBy(mappedBy="order", positionMappedBy="order")
+	private Set<OrderItem> orderItems = new HashSet<OrderItem>();
 
 	Order() {}
 	

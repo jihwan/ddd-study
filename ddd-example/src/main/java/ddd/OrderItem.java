@@ -21,6 +21,10 @@ public class OrderItem {
 	@JoinColumn(name="product_id", nullable=false)
 	private Product product;
 	
+	@ManyToOne
+	@JoinColumn(name="order_id", insertable=false, updatable=false)
+	private Order order;
+	
 	int quantity;
 	
 	@Autowired
