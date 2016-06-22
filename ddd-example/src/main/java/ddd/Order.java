@@ -1,5 +1,6 @@
 package ddd;
 
+import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -14,12 +15,16 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.GenericGenerator;
+
 @Entity @Table(name="ORDERS")
 public class Order {
 	
 	@Id
-	@GeneratedValue
-	private Long id;
+	@GenericGenerator(name="orders_seq_id", strategy="ddd.support.OrderIdGenerator")
+	@GeneratedValue(generator="orders_seq_id")
+	@Column(length=2, precision=20)
+	private BigDecimal id;
 	
 	@Column(name="order_name")
 	private String orderName;
@@ -39,7 +44,7 @@ public class Order {
 		this.customer = customer;
 	}
 	
-	public Long getId() {
+	public BigDecimal getId() {
 		return id;
 	}
 	
